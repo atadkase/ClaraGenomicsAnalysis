@@ -34,6 +34,7 @@ option(cga_enable_caching_allocator "Enable caching allocator." ON)
 option(cga_enable_preallocating_caching_allocator "Enable preallocating caching allocator." ON)
 option(cga_generate_docs "Generate Doxygen documentation" ON)
 option(cga_cuda_gen_all_arch "ON: Generate optimized CUDA code for all architectures | OFF: for detected architectures only" ON)
+option(cga_cuda_sm30 "ON: Generate CUDA Code for SM30 PTX | OFF: Use cuda_all_arch for selection" ON)
 
 # Must be included before others for options value validation
 include(cmake/Utils.cmake)
