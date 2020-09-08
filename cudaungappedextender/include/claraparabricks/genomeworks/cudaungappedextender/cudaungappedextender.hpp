@@ -45,7 +45,7 @@ class UngappedExtender
 {
 public:
     /// \brief Constructor Prototype
-    UngappedExtender(int* h_sub_mat, int input_xdrop, bool input_noentropy,
+    UngappedExtender(const ScoreMatrix& h_sub_mat, int input_xdrop, bool input_noentropy,
                      int gpu_id = 0, cudaStream_t stream = 0);
 
     /// \brief Host pointer prototype for ungapped extension
@@ -54,8 +54,8 @@ public:
     /// copies them over to device,
     /// launches async extension kernels on specified stream. Filters
     /// segments on device based on input_hspthresh.
-    StatusType extend_async(const char* h_query, int32_t query_length,
-                            const char* h_target, int32_t target_length,
+    StatusType extend_async(const SequenceVector& h_query,
+                            const SequenceVector& h_target,
                             int32_t score_threshold,
                             std::vector<SeedPair>& h_seed_pairs);
 
@@ -65,8 +65,8 @@ public:
     /// function. Output array d_hsp_out must be pre-allocated on device.
     /// Launches async extension kernel. Filters segments on device
     /// based on input_hspthresh.
-    StatusType extend_async(const char* d_query, int32_t query_length,
-                            const char* d_target, int32_t target_length,
+    StatusType extend_async(DeviceSequenceView d_query,
+                            DeviceSequenceView d_target,
                             int32_t score_threshold, SeedPair* d_seed_pairs,
                             int32_t num_seed_pairs, ScoredSegmentPair* d_hsp_out,
                             int32_t* d_num_hsps);
