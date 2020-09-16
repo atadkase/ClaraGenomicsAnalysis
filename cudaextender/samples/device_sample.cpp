@@ -50,7 +50,7 @@ void parse_seed_pairs(const std::string& filepath, std::vector<SeedPair>& seed_p
         {
             SeedPair seed_pair;
             seed_pair.target_position_in_read = std::atoi(line.c_str());
-            std::getline(seed_pair_file, line, ','); // Get the next value
+            std::getline(seed_pair_file, line, '\n'); // Get the next value
             seed_pair.query_position_in_read = std::atoi(line.c_str());
             seed_pairs.push_back(seed_pair);
         }
